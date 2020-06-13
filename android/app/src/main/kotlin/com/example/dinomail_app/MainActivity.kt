@@ -1,4 +1,4 @@
-package com.example.dinomail_app
+package fr.nanoy.dinomail_app
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
