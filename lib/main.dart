@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/virtualusers': (context) => VirtualUsersScreen(),
         '/virtualusers/create': (context) => AddVirtualUserScreen(),
         '/virtualusers/edit': (context) => EditVirtualUsersScreen(),
+        '/virtualusers/editPassword': (context) => EditPasswordScreen(),
         '/virtualaliases': (context) => VirtualAliasesScreen(),
         '/virtualaliases/create': (context) => AddVirtualAliasScreen(),
         '/virtualaliases/edit': (context) => EditVirtualAliasScreen(),
@@ -119,7 +120,7 @@ class _HomeScreenState extends State {
                     child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: new Column(children: <Widget>[
-                          new Icon(FontAwesomeIcons.globe, size:100),
+                          new Icon(FontAwesomeIcons.globe, size: 100),
                           SizedBox(height: 20),
                           Text("Virtual domains",
                               style: TextStyle(
@@ -134,7 +135,7 @@ class _HomeScreenState extends State {
                     child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: new Column(children: <Widget>[
-                          new Icon(FontAwesomeIcons.users, size:100),
+                          new Icon(FontAwesomeIcons.users, size: 100),
                           SizedBox(height: 20),
                           Text("Virtual users",
                               style: TextStyle(
@@ -149,7 +150,7 @@ class _HomeScreenState extends State {
                     child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: new Column(children: <Widget>[
-                          new Icon(FontAwesomeIcons.shareSquare, size:100),
+                          new Icon(FontAwesomeIcons.shareSquare, size: 100),
                           SizedBox(height: 20),
                           Text("Virtual aliases",
                               style: TextStyle(
