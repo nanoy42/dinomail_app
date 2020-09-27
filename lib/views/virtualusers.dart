@@ -85,6 +85,7 @@ class _VirtualUsersScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualusers[index].email, style: _biggerFont),
+                subtitle: Text('Quota : ' + virtualusers[index].readableQuota()),
                 trailing:
                     Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   IconButton(
