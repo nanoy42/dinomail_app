@@ -85,6 +85,7 @@ class _VirtualDomainsScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualdomains[index].name, style: _biggerFont),
+                subtitle: Text('DKIM : ' + virtualdomains[index].readableDkim() + ' - DMARC : ' + virtualdomains[index].readableDmarc() + ' - SPF : ' + virtualdomains[index].readableSPF()),
                 trailing: IconButton(
                   icon: Icon(Icons.delete_outline, color: Colors.red, size: 25),
                   onPressed: () {
@@ -140,7 +141,7 @@ class AddVirtualDomainScreen extends StatefulWidget {
 class _AddVirtualDomainScreen extends State {
   var api = API();
   final _formKey = GlobalKey<FormState>();
-  VirtualDomain vd = new VirtualDomain(0, "");
+  VirtualDomain vd = new VirtualDomain(0, "", 0, 0, 0);
 
   initState() {
     super.initState();
