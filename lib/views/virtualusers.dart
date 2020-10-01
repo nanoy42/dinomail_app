@@ -85,31 +85,44 @@ class _VirtualUsersScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualusers[index].email, style: _biggerFont),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete_outline, color: Colors.red, size: 25),
-                  onPressed: () {
-                    Widget continueButton = FlatButton(
-                      child: Text("Delete"),
+                subtitle: Text('Quota : ' + virtualusers[index].readableQuota()),
+                trailing:
+                    Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.lock, color: Colors.blue, size: 25),
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        api.deleteVirtualUser(virtualusers[index].id);
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("User deleted.")));
-                        setState(() {
-                          virtualusers.removeAt(index);
-                        });
-                      },
-                    );
-                    showDeleteAlertDialog(
-                        context,
-                        virtualusers[index].email,
-                        "Delete user",
-                        "Are you sure you want to delete the user " +
-                            virtualusers[index].email +
-                            " ?",
-                        continueButton);
-                  },
-                ),
+                        Navigator.pushNamed(
+                            context, "/virtualusers/editPassword",
+                            arguments:
+                                EditPasswordArguments(virtualusers[index]));
+                      }),
+                  IconButton(
+                    icon:
+                        Icon(Icons.delete_outline, color: Colors.red, size: 25),
+                    onPressed: () {
+                      Widget continueButton = FlatButton(
+                        child: Text("Delete"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          api.deleteVirtualUser(virtualusers[index].id);
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text("User deleted.")));
+                          setState(() {
+                            virtualusers.removeAt(index);
+                          });
+                        },
+                      );
+                      showDeleteAlertDialog(
+                          context,
+                          virtualusers[index].email,
+                          "Delete user",
+                          "Are you sure you want to delete the user " +
+                              virtualusers[index].email +
+                              " ?",
+                          continueButton);
+                    },
+                  )
+                ]),
                 onTap: () {
                   Navigator.pushNamed(context, "/virtualusers/edit",
                       arguments: EditVirtualUserArguments(virtualusers[index]));
@@ -408,6 +421,78 @@ class _EditVirtualUserScreen extends State {
         }
       }
       api.updateVirtualUser(vu);
+      Navigator.pop(context);
+    }
+  }
+}
+
+class EditPasswordArguments {
+  final VirtualUser vu;
+
+  EditPasswordArguments(this.vu);
+}
+
+class EditPasswordScreen extends StatefulWidget {
+  @override
+  createState() => _EditPasswordScreen();
+}
+
+class _EditPasswordScreen extends State {
+  var api = API();
+  final _formKey = GlobalKey<FormState>();
+  VirtualUser vu;
+  String password;
+
+  initState() {
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
+
+  @override
+  build(context) {
+    final EditPasswordArguments args =
+        ModalRoute.of(context).settings.arguments;
+    vu = args.vu;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit virtual user\'s passowrd'),
+      ),
+      body: Form(
+          key: _formKey,
+          child: new ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              children: <Widget>[
+                new TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    icon: const Icon(FontAwesomeIcons.unlock),
+                    hintText: 'Enter password',
+                    labelText: 'Password',
+                  ),
+                  validator: (val) =>
+                      val.isEmpty ? 'Password is required' : null,
+                  onSaved: (val) => password = val,
+                ),
+                new Container(
+                    padding: const EdgeInsets.only(left: 40.0, top: 20.0),
+                    child: new RaisedButton(
+                      child: const Text('Submit'),
+                      onPressed: _submitForm,
+                    )),
+              ])),
+    );
+  }
+
+  void _submitForm() async {
+    await api.init();
+    final FormState form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      api.updateVirtualUserPassword(vu, password);
       Navigator.pop(context);
     }
   }

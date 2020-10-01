@@ -112,6 +112,16 @@ class API {
         body: jsonEncode(virtualUser.toJson()));
   }
 
+   void updateVirtualUserPassword(VirtualUser virtualUser, String password) {
+    var url = baseUrl + "/changeuserpassword/" + virtualUser.id.toString() + "/";
+    http.patch(url,
+        headers: {
+          HttpHeaders.authorizationHeader: authorization,
+          HttpHeaders.contentTypeHeader: 'application/json; CHARSET=UTF-8'
+        },
+        body: jsonEncode({"password": password}));
+  }
+
   void deleteVirtualUser(int pk) {
     var url = baseUrl + "/virtualuser/" + pk.toString() + "/";
     http.delete(url, headers: {HttpHeaders.authorizationHeader: authorization});
