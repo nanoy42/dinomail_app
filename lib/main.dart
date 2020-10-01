@@ -201,7 +201,7 @@ class _HomeScreenState extends State {
               padding: EdgeInsets.all(10),
               height: 100,
               child:
-                  Text("v0.1", style: TextStyle(fontWeight: FontWeight.bold))),
+                  Text("v1.0.0", style: TextStyle(fontWeight: FontWeight.bold))),
         ])));
   }
 }
