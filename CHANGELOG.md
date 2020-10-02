@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## Version 1.0.1
+### Context
+**Codename: Denver**
+
+Denver is the last dinosaur.
+
+### Changes
+
+* Update gradle version
+
+### Update information
+No update information.
+
+
 ## Version 1.0.0
 ### Context
 **Codename: Denver**
