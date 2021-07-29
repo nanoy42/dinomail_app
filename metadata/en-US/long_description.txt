@@ -1,0 +1,9 @@
+App to interact with DinoMail.
+
+DinoMail is an open source mail manager that you
+can get at https://github.com/nanoy42/dinomail. This
+is the android app that interact with the server.
+Features:
+* Create, modify and delete domains. Verify DKIM DMARC and SPF
+* Create, modify and delete users. Change password of users.
+* Create, modify and delete aliases.

@@ -1,0 +1,10 @@
+Application pour intéragir avec DinoMail.
+
+DinoMail est un seveur pour gérer une stack mail,
+opensource, qui peut être obtenu ici : 
+https://github.com/nanoy42/dinomail. Cette 
+application intéragit avec le serveur.
+Fonctionnalités:
+* Créer, modifier et supprimer des domains. Vérifier DKIM DMARC et SPF
+* Créer, modifier et supprimer des utilisateurs. Changer le mot de passe.
+* Créer, modifier et supprimer des alias.
