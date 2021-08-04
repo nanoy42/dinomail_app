@@ -161,13 +161,17 @@ class _HomeScreenState extends State {
         drawer: Drawer(
             child: ListView(padding: EdgeInsets.zero, children: <Widget>[
           DrawerHeader(
-            child: Text('DinoMail'),
+            child: Text(''),
             decoration: BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
                     image: AssetImage("assets/dinomail.jpg"),
                     fit: BoxFit.cover)),
           ),
+          Container(
+              padding: EdgeInsets.all(10),
+              child: Text("DinoMail",
+                  style: TextStyle(fontWeight: FontWeight.bold))),
           ListTile(
             title: Text('Virtual domains'),
             leading: Icon(FontAwesomeIcons.globe),
@@ -199,9 +203,8 @@ class _HomeScreenState extends State {
               }),
           Container(
               padding: EdgeInsets.all(10),
-              height: 100,
-              child:
-                  Text("v1.0.1", style: TextStyle(fontWeight: FontWeight.bold))),
+              child: Text("v1.0.1",
+                  style: TextStyle(fontWeight: FontWeight.bold))),
         ])));
   }
 }
