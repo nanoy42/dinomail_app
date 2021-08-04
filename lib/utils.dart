@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 
 showDeleteAlertDialog(BuildContext context, String name, String title,
     String text, Widget continueButton) {
-  Widget cancelButton = FlatButton(
+  Widget cancelButton = TextButton(
     child: Text("Cancel"),
     onPressed: () {
       Navigator.of(context).pop();

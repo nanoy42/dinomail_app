@@ -32,7 +32,7 @@ class VirtualUsersScreen extends StatefulWidget {
 }
 
 class _VirtualUsersScreen extends State {
-  var virtualusers = new List<VirtualUser>();
+  List<VirtualUser> virtualusers = <VirtualUser>[];
   var api = API();
   final _biggerFont = const TextStyle(fontSize: 18.0);
   bool _isInAsyncCall = true;
@@ -85,7 +85,8 @@ class _VirtualUsersScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualusers[index].email, style: _biggerFont),
-                subtitle: Text('Quota : ' + virtualusers[index].readableQuota()),
+                subtitle:
+                    Text('Quota : ' + virtualusers[index].readableQuota()),
                 trailing:
                     Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   IconButton(
@@ -100,7 +101,7 @@ class _VirtualUsersScreen extends State {
                     icon:
                         Icon(Icons.delete_outline, color: Colors.red, size: 25),
                     onPressed: () {
-                      Widget continueButton = FlatButton(
+                      Widget continueButton = TextButton(
                         child: Text("Delete"),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -125,7 +126,9 @@ class _VirtualUsersScreen extends State {
                 ]),
                 onTap: () {
                   Navigator.pushNamed(context, "/virtualusers/edit",
-                      arguments: EditVirtualUserArguments(virtualusers[index]));
+                          arguments:
+                              EditVirtualUserArguments(virtualusers[index]))
+                      .then((value) => _refreshVirtualUsers());
                 },
               );
             },
@@ -135,7 +138,8 @@ class _VirtualUsersScreen extends State {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/virtualusers/create");
+          Navigator.pushNamed(context, "/virtualusers/create")
+              .then((value) => _refreshVirtualUsers());
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
@@ -247,12 +251,12 @@ class _AddVirtualUserScreen extends State {
                       onSaved: (val) => vu.quota = num.parse(val),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        WhitelistingTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.digitsOnly
                       ],
                     ),
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           child: const Text('Submit'),
                           onPressed: _submitForm,
                         )),
@@ -396,12 +400,12 @@ class _EditVirtualUserScreen extends State {
                       onSaved: (val) => vu.quota = num.parse(val),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        WhitelistingTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.digitsOnly
                       ],
                     ),
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           child: const Text('Submit'),
                           onPressed: _submitForm,
                         )),
@@ -479,7 +483,7 @@ class _EditPasswordScreen extends State {
                 ),
                 new Container(
                     padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                    child: new RaisedButton(
+                    child: new ElevatedButton(
                       child: const Text('Submit'),
                       onPressed: _submitForm,
                     )),

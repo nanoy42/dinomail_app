@@ -30,7 +30,7 @@ class VirtualDomainsScreen extends StatefulWidget {
 }
 
 class _VirtualDomainsScreen extends State {
-  var virtualdomains = new List<VirtualDomain>();
+  List<VirtualDomain> virtualdomains = <VirtualDomain>[];
   var api = API();
   final _biggerFont = const TextStyle(fontSize: 18.0);
   bool _isInAsyncCall = true;
@@ -39,11 +39,11 @@ class _VirtualDomainsScreen extends State {
     await api.init();
     api.getVirtualDomains().then((response) {
       setState(() {
-        if(response.statusCode == 200){
-        var parsedJson = json.decode(response.body);
-        Iterable list = parsedJson["objects"];
-        virtualdomains =
-            list.map((model) => VirtualDomain.fromJson(model)).toList();
+        if (response.statusCode == 200) {
+          var parsedJson = json.decode(response.body);
+          Iterable list = parsedJson["objects"];
+          virtualdomains =
+              list.map((model) => VirtualDomain.fromJson(model)).toList();
         }
         _isInAsyncCall = false;
       });
@@ -85,11 +85,16 @@ class _VirtualDomainsScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualdomains[index].name, style: _biggerFont),
-                subtitle: Text('DKIM : ' + virtualdomains[index].readableDkim() + ' - DMARC : ' + virtualdomains[index].readableDmarc() + ' - SPF : ' + virtualdomains[index].readableSPF()),
+                subtitle: Text('DKIM : ' +
+                    virtualdomains[index].readableDkim() +
+                    ' - DMARC : ' +
+                    virtualdomains[index].readableDmarc() +
+                    ' - SPF : ' +
+                    virtualdomains[index].readableSPF()),
                 trailing: IconButton(
                   icon: Icon(Icons.delete_outline, color: Colors.red, size: 25),
                   onPressed: () {
-                    Widget continueButton = FlatButton(
+                    Widget continueButton = TextButton(
                       child: Text("Delete"),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -113,8 +118,9 @@ class _VirtualDomainsScreen extends State {
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, "/virtualdomains/edit",
-                      arguments:
-                          EditVirtualDomainsArguments(virtualdomains[index]));
+                          arguments: EditVirtualDomainsArguments(
+                              virtualdomains[index]))
+                      .then((value) => _refreshVirtualDomains());
                 },
               );
             },
@@ -124,7 +130,8 @@ class _VirtualDomainsScreen extends State {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/virtualdomains/create");
+          Navigator.pushNamed(context, "/virtualdomains/create")
+              .then((value) => _refreshVirtualDomains());
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
@@ -174,7 +181,7 @@ class _AddVirtualDomainScreen extends State {
                   ),
                   new Container(
                       padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                      child: new RaisedButton(
+                      child: new ElevatedButton(
                         child: const Text('Submit'),
                         onPressed: _submitForm,
                       )),
@@ -243,7 +250,7 @@ class _EditVirtualDomainScreen extends State {
                   ),
                   new Container(
                       padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                      child: new RaisedButton(
+                      child: new ElevatedButton(
                         child: const Text('Submit'),
                         onPressed: _submitForm,
                       )),

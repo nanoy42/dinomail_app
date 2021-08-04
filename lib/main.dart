@@ -161,13 +161,17 @@ class _HomeScreenState extends State {
         drawer: Drawer(
             child: ListView(padding: EdgeInsets.zero, children: <Widget>[
           DrawerHeader(
-            child: Text('DinoMail'),
+            child: Text(''),
             decoration: BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
                     image: AssetImage("assets/dinomail.jpg"),
                     fit: BoxFit.cover)),
           ),
+          Container(
+              padding: EdgeInsets.all(10),
+              child: Text("DinoMail",
+                  style: TextStyle(fontWeight: FontWeight.bold))),
           ListTile(
             title: Text('Virtual domains'),
             leading: Icon(FontAwesomeIcons.globe),
@@ -199,34 +203,9 @@ class _HomeScreenState extends State {
               }),
           Container(
               padding: EdgeInsets.all(10),
-              height: 100,
-              child:
-                  Text("v1.0.1", style: TextStyle(fontWeight: FontWeight.bold))),
+              child: Text("v1.0.2",
+                  style: TextStyle(fontWeight: FontWeight.bold))),
         ])));
-  }
-}
-
-class CustomCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-      child: new Column(
-        children: <Widget>[
-          new Image.network(
-              'https://i.ytimg.com/vi/fq4N0hgOWzU/maxresdefault.jpg'),
-          new Padding(
-              padding: new EdgeInsets.all(7.0),
-              child: new Row(
-                children: <Widget>[
-                  new Padding(
-                    padding: new EdgeInsets.all(7.0),
-                    child: new Icon(Icons.thumb_up),
-                  ),
-                ],
-              ))
-        ],
-      ),
-    );
   }
 }
 
@@ -329,7 +308,7 @@ class _SettingsScreenState extends State {
                       ),
                       new Container(
                           padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                          child: new RaisedButton(
+                          child: new ElevatedButton(
                             child: const Text('Save'),
                             onPressed: _submitForm,
                           )),
@@ -338,10 +317,12 @@ class _SettingsScreenState extends State {
                           child: new Text('Token saved : ' + '$tokenOk')),
                       new Container(
                           padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                          child: new RaisedButton(
-                            child: const Text('Delete saved values'),
-                            onPressed: _cleanSharedPreferences,
-                          )),
+                          child: new ElevatedButton(
+                              child: const Text('Delete saved values'),
+                              onPressed: _cleanSharedPreferences,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.red,
+                              ))),
                     ]))));
   }
 
