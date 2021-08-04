@@ -203,7 +203,7 @@ class _HomeScreenState extends State {
               }),
           Container(
               padding: EdgeInsets.all(10),
-              child: Text("v1.0.1",
+              child: Text("v1.0.2",
                   style: TextStyle(fontWeight: FontWeight.bold))),
         ])));
   }
