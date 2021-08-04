@@ -209,30 +209,6 @@ class _HomeScreenState extends State {
   }
 }
 
-class CustomCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-      child: new Column(
-        children: <Widget>[
-          new Image.network(
-              'https://i.ytimg.com/vi/fq4N0hgOWzU/maxresdefault.jpg'),
-          new Padding(
-              padding: new EdgeInsets.all(7.0),
-              child: new Row(
-                children: <Widget>[
-                  new Padding(
-                    padding: new EdgeInsets.all(7.0),
-                    child: new Icon(Icons.thumb_up),
-                  ),
-                ],
-              ))
-        ],
-      ),
-    );
-  }
-}
-
 class SettingsScreen extends StatefulWidget {
   @override
   createState() => _SettingsScreenState();
