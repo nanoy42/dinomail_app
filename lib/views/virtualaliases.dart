@@ -31,7 +31,7 @@ class VirtualAliasesScreen extends StatefulWidget {
 }
 
 class _VirtualAliasesScreen extends State {
-  var virtualaliases = new List<VirtualAlias>();
+  List<VirtualAlias> virtualaliases = <VirtualAlias>[];
   var api = API();
   final _biggerFont = const TextStyle(fontSize: 18.0);
   bool _isInAsyncCall = true;
@@ -89,7 +89,7 @@ class _VirtualAliasesScreen extends State {
                 trailing: IconButton(
                   icon: Icon(Icons.delete_outline, color: Colors.red, size: 25),
                   onPressed: () {
-                    Widget continueButton = FlatButton(
+                    Widget continueButton = TextButton(
                       child: Text("Delete"),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -239,7 +239,7 @@ class _AddVirtualAliasScreen extends State {
                     ),
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           child: const Text('Submit'),
                           onPressed: _submitForm,
                         )),
@@ -384,7 +384,7 @@ class _EditVirtualAliasScreen extends State {
                     ),
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           child: const Text('Submit'),
                           onPressed: _submitForm,
                         )),

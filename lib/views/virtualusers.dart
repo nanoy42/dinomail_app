@@ -32,7 +32,7 @@ class VirtualUsersScreen extends StatefulWidget {
 }
 
 class _VirtualUsersScreen extends State {
-  var virtualusers = new List<VirtualUser>();
+  List<VirtualUser> virtualusers = <VirtualUser>[];
   var api = API();
   final _biggerFont = const TextStyle(fontSize: 18.0);
   bool _isInAsyncCall = true;
@@ -101,7 +101,7 @@ class _VirtualUsersScreen extends State {
                     icon:
                         Icon(Icons.delete_outline, color: Colors.red, size: 25),
                     onPressed: () {
-                      Widget continueButton = FlatButton(
+                      Widget continueButton = TextButton(
                         child: Text("Delete"),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -251,12 +251,12 @@ class _AddVirtualUserScreen extends State {
                       onSaved: (val) => vu.quota = num.parse(val),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        WhitelistingTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.digitsOnly
                       ],
                     ),
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           child: const Text('Submit'),
                           onPressed: _submitForm,
                         )),
@@ -400,12 +400,12 @@ class _EditVirtualUserScreen extends State {
                       onSaved: (val) => vu.quota = num.parse(val),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        WhitelistingTextInputFormatter.digitsOnly
+                        FilteringTextInputFormatter.digitsOnly
                       ],
                     ),
                     new Container(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: new RaisedButton(
+                        child: new ElevatedButton(
                           child: const Text('Submit'),
                           onPressed: _submitForm,
                         )),
@@ -483,7 +483,7 @@ class _EditPasswordScreen extends State {
                 ),
                 new Container(
                     padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                    child: new RaisedButton(
+                    child: new ElevatedButton(
                       child: const Text('Submit'),
                       onPressed: _submitForm,
                     )),

@@ -30,7 +30,7 @@ class VirtualDomainsScreen extends StatefulWidget {
 }
 
 class _VirtualDomainsScreen extends State {
-  var virtualdomains = new List<VirtualDomain>();
+  List<VirtualDomain> virtualdomains = <VirtualDomain>[];
   var api = API();
   final _biggerFont = const TextStyle(fontSize: 18.0);
   bool _isInAsyncCall = true;
@@ -94,7 +94,7 @@ class _VirtualDomainsScreen extends State {
                 trailing: IconButton(
                   icon: Icon(Icons.delete_outline, color: Colors.red, size: 25),
                   onPressed: () {
-                    Widget continueButton = FlatButton(
+                    Widget continueButton = TextButton(
                       child: Text("Delete"),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -181,7 +181,7 @@ class _AddVirtualDomainScreen extends State {
                   ),
                   new Container(
                       padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                      child: new RaisedButton(
+                      child: new ElevatedButton(
                         child: const Text('Submit'),
                         onPressed: _submitForm,
                       )),
@@ -250,7 +250,7 @@ class _EditVirtualDomainScreen extends State {
                   ),
                   new Container(
                       padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                      child: new RaisedButton(
+                      child: new ElevatedButton(
                         child: const Text('Submit'),
                         onPressed: _submitForm,
                       )),

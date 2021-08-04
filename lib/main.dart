@@ -308,7 +308,7 @@ class _SettingsScreenState extends State {
                       ),
                       new Container(
                           padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                          child: new RaisedButton(
+                          child: new ElevatedButton(
                             child: const Text('Save'),
                             onPressed: _submitForm,
                           )),
@@ -317,10 +317,12 @@ class _SettingsScreenState extends State {
                           child: new Text('Token saved : ' + '$tokenOk')),
                       new Container(
                           padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                          child: new RaisedButton(
-                            child: const Text('Delete saved values'),
-                            onPressed: _cleanSharedPreferences,
-                          )),
+                          child: new ElevatedButton(
+                              child: const Text('Delete saved values'),
+                              onPressed: _cleanSharedPreferences,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.red,
+                              ))),
                     ]))));
   }
 
