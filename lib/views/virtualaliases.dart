@@ -124,7 +124,8 @@ class _VirtualAliasesScreen extends State {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/virtualaliases/create");
+          Navigator.pushNamed(context, "/virtualaliases/create")
+              .then((value) => _refreshVirtualAliases());
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,

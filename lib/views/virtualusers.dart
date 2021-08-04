@@ -85,7 +85,8 @@ class _VirtualUsersScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualusers[index].email, style: _biggerFont),
-                subtitle: Text('Quota : ' + virtualusers[index].readableQuota()),
+                subtitle:
+                    Text('Quota : ' + virtualusers[index].readableQuota()),
                 trailing:
                     Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   IconButton(
@@ -135,7 +136,8 @@ class _VirtualUsersScreen extends State {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/virtualusers/create");
+          Navigator.pushNamed(context, "/virtualusers/create")
+              .then((value) => _refreshVirtualUsers());
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,

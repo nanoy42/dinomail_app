@@ -39,11 +39,11 @@ class _VirtualDomainsScreen extends State {
     await api.init();
     api.getVirtualDomains().then((response) {
       setState(() {
-        if(response.statusCode == 200){
-        var parsedJson = json.decode(response.body);
-        Iterable list = parsedJson["objects"];
-        virtualdomains =
-            list.map((model) => VirtualDomain.fromJson(model)).toList();
+        if (response.statusCode == 200) {
+          var parsedJson = json.decode(response.body);
+          Iterable list = parsedJson["objects"];
+          virtualdomains =
+              list.map((model) => VirtualDomain.fromJson(model)).toList();
         }
         _isInAsyncCall = false;
       });
@@ -85,7 +85,12 @@ class _VirtualDomainsScreen extends State {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(virtualdomains[index].name, style: _biggerFont),
-                subtitle: Text('DKIM : ' + virtualdomains[index].readableDkim() + ' - DMARC : ' + virtualdomains[index].readableDmarc() + ' - SPF : ' + virtualdomains[index].readableSPF()),
+                subtitle: Text('DKIM : ' +
+                    virtualdomains[index].readableDkim() +
+                    ' - DMARC : ' +
+                    virtualdomains[index].readableDmarc() +
+                    ' - SPF : ' +
+                    virtualdomains[index].readableSPF()),
                 trailing: IconButton(
                   icon: Icon(Icons.delete_outline, color: Colors.red, size: 25),
                   onPressed: () {
@@ -124,7 +129,8 @@ class _VirtualDomainsScreen extends State {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/virtualdomains/create");
+          Navigator.pushNamed(context, "/virtualdomains/create")
+              .then((value) => _refreshVirtualDomains());
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
