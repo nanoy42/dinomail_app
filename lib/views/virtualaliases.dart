@@ -113,8 +113,9 @@ class _VirtualAliasesScreen extends State {
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, "/virtualaliases/edit",
-                      arguments:
-                          EditVirtualAliasArguments(virtualaliases[index]));
+                          arguments:
+                              EditVirtualAliasArguments(virtualaliases[index]))
+                      .then((value) => _refreshVirtualAliases());
                 },
               );
             },

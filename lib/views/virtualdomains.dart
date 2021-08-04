@@ -118,8 +118,9 @@ class _VirtualDomainsScreen extends State {
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, "/virtualdomains/edit",
-                      arguments:
-                          EditVirtualDomainsArguments(virtualdomains[index]));
+                          arguments: EditVirtualDomainsArguments(
+                              virtualdomains[index]))
+                      .then((value) => _refreshVirtualDomains());
                 },
               );
             },

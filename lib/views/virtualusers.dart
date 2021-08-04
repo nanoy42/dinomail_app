@@ -126,7 +126,9 @@ class _VirtualUsersScreen extends State {
                 ]),
                 onTap: () {
                   Navigator.pushNamed(context, "/virtualusers/edit",
-                      arguments: EditVirtualUserArguments(virtualusers[index]));
+                          arguments:
+                              EditVirtualUserArguments(virtualusers[index]))
+                      .then((value) => _refreshVirtualUsers());
                 },
               );
             },
