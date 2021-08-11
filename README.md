@@ -14,10 +14,11 @@ Currently, the DinoMail app supports :
 
 The app is in English
 
-## PlayStore
+## Download the app
 
-The app can be found on the playstore : https://play.google.com/store/apps/details?id=fr.nanoy.dinomail_app
-
-## F-droid
-
-The app will apply for a F-droid release.
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/fr.nanoy.dinomail_app/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt="Get it on Google Play"
+     height="80">](https://play.google.com/store/apps/details?id=fr.nanoy.dinomail_app)
